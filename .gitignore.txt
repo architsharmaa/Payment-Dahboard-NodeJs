@@ -1,0 +1,4 @@
+/node_modules
+/combined.txt
+/error.txt
+/workspace
