@@ -1,0 +1,527 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Payment API NodeJS",
+    "description": "API will fetch the transaction records from the database and display them in the table under the filter form Payments dashboard is a MERN stack project which is a part of Green project being developed under Paymentus. Payments Dashboard is a web dashboard which will be used by the user to find the transaction details using the filters embedded into the dashboard. Based upon the filter the API will fetch the transaction records from the database and display them in the table under the filter form. Each transaction will have a “Details” button which upon clicking will show up the transaction details in another webpage",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3300",
+  "basePath": "/",
+  "securityDefinitions": {
+    "Authorization": {
+      "type": "apiKey",
+      "name": "auth-token",
+      "in": "header",
+      "description": "Authentication token"
+    }
+  },
+  "tags": [
+    {
+      "name": "login",
+      "description": "login and authenticatin related Service"
+    },
+    {
+      "name": "payment",
+      "description": "All about payment data and details"
+    }
+  ],
+  "schemes": ["http"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/login": {
+      "post": {
+        "tags": ["login"],
+        "summary": "Login a user based on credentials",
+        "operationId": "createTodo",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/LoginCredintials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/LoginAPIResponse"
+            }
+          }
+        }
+      }
+    },
+    "/login/refresh-token": {
+      "post": {
+        "tags": ["login"],
+        "summary": "Genrate a jwt token as well as refresh token base don previous token",
+        "operationId": "refrshtoken",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/RefreshToken"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/RefreshTokenAPIResponse"
+            }
+          }
+        }
+      }
+    },
+    "/login/new": {
+      "post": {
+        "tags": ["login"],
+        "summary": "Add a user based on credentials",
+        "operationId": "refrshtoken",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/NewUserCredintials"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/NewUserAPIResponse"
+            }
+          }
+        }
+      }
+    },
+    "/payments": {
+      "post": {
+        "tags": ["payment"],
+        "summary": "Payment data fetching",
+        "operationId": "paymentData",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/PaymentData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/PaymentDataResponse"
+            }
+          }
+        }
+      }
+    },
+    "/payments/paymentDetails": {
+      "post": {
+        "tags": ["payment"],
+        "summary": "Detailed Payment data fetching",
+        "operationId": "paymentDetails",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/PaymentDataConfirmationNo"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/PaymentData"
+            }
+          }
+        }
+      }
+    },
+    "/biller-payments": {
+      "post": {
+        "tags": ["payment"],
+        "summary": "Payment data fetching by the biller",
+        "operationId": "paymentbiller",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/PaymentData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/PaymentDataResponse"
+            }
+          }
+        }
+      }
+    },
+    "/payments/meta-data": {
+      "post": {
+        "tags": ["payment"],
+        "summary": "Payment meta data",
+        "operationId": "paymentMetaData",
+        "security": [
+          {
+            "Authorization": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Parameters to be passed along the request of the body",
+            "required": true,
+            "schema": {
+              "type": "object",
+              "$ref": "#/definitions/PaymentMetaData"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Login route for verifying login credentials and genrating jwt toke",
+            "schema": {
+              "$ref": "#/definitions/PaymentMetaDataResponse"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "LoginCredintials": {
+      "type": "object",
+      "$ref": "#/definitions/LoginCredintials",
+      "properties": {
+        "username": {
+          "type": "string",
+          "format": "string",
+          "example": "user"
+        },
+        "password": {
+          "type": "string",
+          "format": "string",
+          "example": "samplepasword"
+        }
+      }
+    },
+    "LoginAPIResponse": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string",
+          "format": "string",
+          "example": "xhxjgckhckcjcvkhcjhc......."
+        },
+        "refreshtoken": {
+          "type": "string",
+          "format": "string",
+          "example": "xxhgc juigiuiu....."
+        },
+        "userType": {
+          "type": "string",
+          "format": "string",
+          "example": "admin/user"
+        },
+        "userId": {
+          "type": "string",
+          "format": "string",
+          "example": "1500"
+        }
+      }
+    },
+    "RefreshToken": {
+      "type": "object",
+      "properties": {
+        "refreshtoken": {
+          "type": "string",
+          "format": "string",
+          "example": "xhxjgckhckcjcvkhcjhc......."
+        }
+      }
+    },
+    "JWTToken": {
+      "type": "object",
+      "properties": {
+        "auth-token": {
+          "type": "string",
+          "format": "string",
+          "example": "xhxjgckhckcjcvkhcjhc......."
+        }
+      }
+    },
+    "RefreshTokenAPIResponse": {
+      "type": "object",
+      "properties": {
+        "refreshtoken": {
+          "type": "string",
+          "format": "string",
+          "example": "xhxjgckhckcjcvkhcjhc......."
+        },
+        "token": {
+          "type": "string",
+          "format": "string",
+          "example": "dfsdfsdfsdf......."
+        }
+      }
+    },
+    "NewUserAPIResponse": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string",
+          "format": "string",
+          "example": "User added"
+        }
+      }
+    },
+    "NewUserCredintials": {
+      "type": "object",
+      "properties": {
+        "username": {
+          "type": "string",
+          "format": "string",
+          "example": "user"
+        },
+        "password": {
+          "type": "string",
+          "format": "string",
+          "example": "samplepasword"
+        },
+        "userType": {
+          "type": "string",
+          "format": "string",
+          "example": "admin/user"
+        },
+        "userId": {
+          "type": "integer",
+          "format": "integer",
+          "example": 10233
+        }
+      }
+    },
+    "PaymentData": {
+      "type": "object",
+      "properties": {
+        "startDate": {
+          "type": "string",
+          "format": "string",
+          "example": "04-02-1999"
+        },
+        "endDate": {
+          "type": "string",
+          "format": "string",
+          "example": "04-02-1999"
+        },
+        "paymentAmountMinRange": {
+          "type": "string",
+          "format": "string",
+          "example": "1000"
+        },
+        "paymentAmountMaxRange": {
+          "type": "string",
+          "format": "string",
+          "example": "9999"
+        },
+        "Status": {
+          "type": "string",
+          "format": "string",
+          "example": "Authorized"
+        },
+        "userId": {
+          "type": "string",
+          "format": "string",
+          "example": "10005"
+        },
+        "confirmationNumber": {
+          "type": "integer",
+          "format": "integer",
+          "example": 100235
+        },
+        "paymentType": {
+          "type": "string",
+          "format": "string",
+          "example": "Visa"
+        },
+        "accountNumber": {
+          "type": "string",
+          "format": "string",
+          "example": "1111226596"
+        },
+        "email": {
+          "type": "string",
+          "format": "string",
+          "example": "abc@xyz.com"
+        },
+        "channel": {
+          "type": "string",
+          "format": "string",
+          "example": "Agent Dashboard"
+        },
+        "paymentMethod": {
+          "type": "string",
+          "format": "string",
+          "example": "MasterCard"
+        }
+      }
+    },
+    "PaymentDataResponse": {
+      "type": "object",
+      "properties": {
+        "numberOfRecords": {
+          "type": "integer",
+          "format": "integer",
+          "example": 96
+        },
+        "payments": {
+          "example": [
+            {
+              "_id": "628f20037df3579433661cb9",
+              "userId": 100002,
+              "confirmationNumber": 12346,
+              "paymentType": "Utility",
+              "accountNumber": 987654321,
+              "email": "abc@gmail.com",
+              "channel": "Agent Dashboard",
+              "paymentAmount": 560,
+              "paymentDate": "2022-02-02T18:30:00.000Z",
+              "paymentMethod": "Visa",
+              "Status": "Authorized",
+              "cardType": "Visa",
+              "cardNumber": "****5552",
+              "Name": "Mark Carrillo",
+              "contactNumber": "9418033741",
+              "Zip": "123457"
+            },
+            {
+              "_id": "628f20037df3579433661cba",
+              "userId": 100003,
+              "confirmationNumber": 12347,
+              "paymentType": "Utility",
+              "accountNumber": 987654321,
+              "email": "abc1@gmail.com",
+              "channel": "Agent Dashboard",
+              "paymentAmount": 7388,
+              "paymentDate": "2022-06-09T18:30:00.000Z",
+              "paymentMethod": "Visa",
+              "Status": "Mastercard",
+              "cardType": "Visa",
+              "cardNumber": "****5553",
+              "Name": "Crystal Lewis",
+              "contactNumber": "9418033742",
+              "Zip": "123458"
+            }
+          ]
+        }
+      }
+    },
+    "PaymentDataConfirmationNo": {
+      "type": "object",
+      "properties": {
+        "confirmationNumber": {
+          "type": "integer",
+          "format": "integer",
+          "example": 12345
+        }
+      }
+    },
+    "PaymentMetaData": {
+      "type": "object"
+    },
+    "PaymentMetaDataResponse": {
+      "type": "object",
+      "properties": {
+        "metaFeildsPaymentType": {
+          "example": ["Utility", "Water"]
+        },
+        "metaFeildsPaymentMethod": {
+          "example": [
+            "American Express",
+            "Checking Account",
+            "Discover",
+            "Fiserv External Payment",
+            "Green Dot"
+          ]
+        },
+        "metaFeildschannel": {
+          "example": [
+            "Agent Dashboard",
+            "IVR Channel",
+            "Instant Payment Network",
+            "Instant Payment Networkm",
+            "Integration Gateway",
+            "Mastercard RPPS",
+            "Mobile Channel"
+          ]
+        },
+        "metaFeildsStatus": {
+          "example": [
+            "Accepted",
+            "Authorized",
+            "Cancelled Void",
+            "Card Present Terminal Initiated",
+            "Declined",
+            "Failed",
+            "Mastercard",
+            "Processing"
+          ]
+        }
+      }
+    }
+  }
+}
