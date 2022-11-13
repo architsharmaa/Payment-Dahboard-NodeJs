@@ -2,8 +2,8 @@
   "swagger": "2.0",
   "info": {
     "version": "1.0.0",
-    "title": "Payment API NodeJS",
-    "description": "API will fetch the transaction records from the database and display them in the table under the filter form Payments dashboard is a MERN stack project which is a part of Green project being developed under Paymentus. Payments Dashboard is a web dashboard which will be used by the user to find the transaction details using the filters embedded into the dashboard. Based upon the filter the API will fetch the transaction records from the database and display them in the table under the filter form. Each transaction will have a “Details” button which upon clicking will show up the transaction details in another webpage",
+    "title": "Payment API NodeJS",-
+    "description": "API will fetch the transaction records from the database and display them in the table under the filter form Payments dashboard is a MERN tack project which is a part of Green project being developed under Paymen__tsxx. Payments Dashboard is a web dashboard which will be used by the user to find the transaction details using the filters embedded into the dashboard. Based upon the filter the API will fetch the transaction records from the database and display them in the table under the filter form. Each transaction will have a “Details” button which upon clicking will show up the transaction details in another webpage",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
